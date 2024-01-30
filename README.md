@@ -4,8 +4,5 @@ A comprehensive solution-cum-guide to bandit challenges until level 20 and also 
 
 <details>
 <summary>Level 0</summary>
-lmao this is not even a level. Connect to bandit's shell using the command
-    ```
-    dwmdpmd
-    ``` 
+lmao this is not even a level. Connect to bandit's shell using the command ```bash ssh ```
 </details>
