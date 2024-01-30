@@ -13,7 +13,8 @@ A comprehensive solution-cum-guide to bandit challenges until level 20 and also 
     ssh bandit0@bandit.labs.overthewire.org -p 2220
 <details>
 <summary>Password</summary>
-bandit0
+    
+`bandit0`
 </details>
 
 ### [Level 0 -> Level 1](https://overthewire.org/wargames/bandit/bandit1.html)
@@ -23,9 +24,9 @@ To read the contents in the `readme ` file, use the following command.
     cat readme
 
 <details>
-<summary>Password</summary>
+<summary>Password Obtained</summary>
 
-`bandit0` 
+`NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL` 
 </details>
 
 ### [Level 1 -> Level 2](https://overthewire.org/wargames/bandit/bandit2.html)
@@ -39,9 +40,9 @@ The file named `-` has the password for the next level. To read the contents in 
     cat ./-
 
 <details>
-<summary>Password</summary>
+<summary>Password Obtained</summary>
 
-`NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL` 
+`rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi` 
 </details>
 
 ### [Level 2 -> Level 3](https://overthewire.org/wargames/bandit/bandit2.html)
@@ -58,9 +59,9 @@ and
 
     cat "spaces in this filename"
 <details>
-<summary>Password</summary>
+<summary>Password Obtained</summary>
 
-`rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi` 
+`aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG` 
 </details>
 
 ### [Level 3 -> Level 4](https://overthewire.org/wargames/bandit/bandit2.html)
@@ -77,9 +78,9 @@ And then type `cat` and hit TAB key to get this.
 
     cat .hidden
 <details>
-<summary>Password</summary>
+<summary>Password Obtained</summary>
 
-`aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG` 
+`2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe` 
 </details>
 
 ### [Level 4 -> Level 5](https://overthewire.org/wargames/bandit/bandit2.html)
@@ -99,8 +100,8 @@ You will find that `-file07` has `ASCII text` as its data type. Use `cat` to rea
 
     cat ./-file07
 <details>
-<summary>Password</summary>
+<summary>Password Obtained</summary>
 
-`2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe` 
+`lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR` 
 </details>
 
