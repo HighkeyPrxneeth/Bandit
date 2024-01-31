@@ -405,3 +405,37 @@ The new line appended is the password.
 
 `hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg`
 </details>
+
+### [Level 18 -> Level 19](https://overthewire.org/wargames/bandit/bandit19.html)
+
+Connect to the bandit's shell using this command:
+
+    ssh bandit18@bandit.labs.overthewire.org -p 2220
+
+You are immediately disconnected from the shell because of some changes in `.bashrc`. You can technically execute commands by giving them in the ssh command itself.
+
+    ssh bandit18@bandit.labs.overthewire.org -p 2220 ls
+
+By using `ls` we can see that the directory contains a file named `readme`. Use `cat` to read the content of the file.
+
+    ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+
+<details> <summary>Password Obtained</summary>
+
+`awhqfNnAbc1naukrpqDYcF95h7HoMTrC`
+</details>
+
+### [Level 19 -> Level 20](https://overthewire.org/wargames/bandit/bandit20.html)
+
+Connect to the bandit's shell using this command:
+
+    ssh bandit19@bandit.labs.overthewire.org -p 2220
+
+You will be able to see that there is a file named `bandit20-do`. This is an executable which commands with the permission levels of the user `bandit20`. So use this file to read the password.
+
+    ./bandit20-do cat /etc/bandit_pass/bandit20
+
+<details> <summary>Password Obtained</summary>
+
+`VxCazJaVykI6W36BkBU0mJTCM8rR95XT`
+</details>
