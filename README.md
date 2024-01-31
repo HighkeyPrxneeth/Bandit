@@ -4,6 +4,11 @@
 A comprehensive solution-cum-guide to bandit challenges until level 20 and also a report submission for my fellow club-mates.
 
 
+# Bandit Report
+
+A comprehensive solution-cum-guide to bandit challenges until level 20 and also a report submission for my fellow club-mates.
+
+
 ## Solutions
 
 ### [Level 0](https://overthewire.org/wargames/bandit/bandit0.html)
@@ -103,5 +108,101 @@ You will find that `-file07` has `ASCII text` as its data type. Use `cat` to rea
 <summary>Password Obtained</summary>
 
 `lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR` 
+</details>
+
+
+### [Level 5 -> Level 6](https://overthewire.org/wargames/bandit/bandit6.html)
+
+Connect to the bandit's shell using this command.
+
+    ssh bandit5@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in a file within the inhere directory and is human-readable, beginning with '3' and ending with 'd'. You can find it using the find command combined with grep.
+
+
+    cd inhere
+    find . -type f -size 1033c
+
+This command searches for non-executable files in the current directory (inhere) with a size of exactly 1033 bytes.
+<details>
+<summary>Password Obtained</summary>
+
+`P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU`
+</details>
+
+### [Level 6 -> Level 7](https://overthewire.org/wargames/bandit/bandit7.html)
+
+Connect to the bandit's shell using this command.
+
+    ssh bandit6@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in a file somewhere on the server and has the following properties:
+
+    Owned by user bandit7.
+    Owned by group bandit6.
+    33 bytes in size.
+
+You can find it using the find command combined with file ownership and size specifications.
+
+    find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+
+<details>
+<summary>Password Obtained</summary>
+
+`z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S`
+</details>
+
+### [Level 7 -> Level 8](https://overthewire.org/wargames/bandit/bandit8.html)
+
+Connect to the bandit's shell using this command.
+
+    ssh bandit7@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in the data.txt file next to the word "millionth".
+
+You can use grep to search for the word "millionth" in the data.txt file.
+
+    grep millionth data.txt
+
+<details>
+<summary>Password Obtained</summary>
+
+`TESKZC0XvTetK0S9xNwm25STk5iWrBvP`
+</details>
+
+### [Level 8 -> Level 9](https://overthewire.org/wargames/bandit/bandit9.html)
+
+Connect to the bandit's shell using this command.
+
+    ssh bandit8@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in the file data.txt and is the only line of text that occurs only once.
+
+You can use sort and uniq commands to find the unique line.
+
+    sort data.txt | uniq -u
+
+<details>
+<summary>Password Obtained</summary>
+
+`EN632PlfYiZbn3PhVK3XOGSlNInNE00t`
+</details>
+
+### [Level 9 -> Level 10](https://overthewire.org/wargames/bandit/bandit10.html)
+
+Connect to the bandit's shell using this command.
+
+    ssh bandit9@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in the file data.txt and is preceded by several '=' characters.
+
+You can use grep to search for lines starting with '='.
+
+    strings data.txt | grep -o '==*.*'
+
+<details>
+<summary>Password Obtained</summary>
+
+`G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s`
 </details>
 
