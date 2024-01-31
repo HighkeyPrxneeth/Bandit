@@ -194,9 +194,7 @@ Connect to the bandit's shell using this command.
 
     ssh bandit9@bandit.labs.overthewire.org -p 2220
 
-The password for the next level is stored in the file data.txt and is preceded by several '=' characters.
-
-You can use grep to search for lines starting with '='.
+The password for the next level is stored in the file data.txt and is preceded by several '=' characters. The strings command extracts sequences of printable characters from the binary file, and then grep searches for lines starting with '='.
 
     strings data.txt | grep -o '==*.*'
 
