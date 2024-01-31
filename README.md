@@ -4,11 +4,6 @@
 A comprehensive solution-cum-guide to bandit challenges until level 20 and also a report submission for my fellow club-mates.
 
 
-# Bandit Report
-
-A comprehensive solution-cum-guide to bandit challenges until level 20 and also a report submission for my fellow club-mates.
-
-
 ## Solutions
 
 ### [Level 0](https://overthewire.org/wargames/bandit/bandit0.html)
