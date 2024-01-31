@@ -3,7 +3,6 @@
 
 A comprehensive solution-cum-guide to bandit challenges until level 20 and also a report submission for my fellow club-mates.
 
-
 ## Solutions
 
 ### [Level 0](https://overthewire.org/wargames/bandit/bandit0.html)
@@ -297,3 +296,112 @@ Now `cat` the `data8` file for the password. The directory and the files that yo
 `wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw`
 </details>
 
+### [Level 13 -> Level 14](https://overthewire.org/wargames/bandit/bandit14.html)
+
+Connect to the bandit's shell using this command:
+
+    ssh bandit13@bandit.labs.overthewire.org -p 2220
+
+If you use `ls` in the current directory, you will find a file named `sshkey.private`. This is a private key to connect to the bandit's server through secure shell. To use that, connect to the user `bandit14` from local host.
+
+    ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+
+| :exclamation:  There is no password obtained in this level   |
+|--------------------------------------------------------------|
+
+### [Level 14 -> Level 15](https://overthewire.org/wargames/bandit/bandit15.html)
+
+You are already connect to bandit's shell. The password is not stored in the home directory, but rather in the configuration directory, AKA `/etc`. You can use `cat` to read the files. The password that we need is stored in a file named `bandit14` located in `/bandit_pass` directory. 
+
+    cat /etc/bandit_pass/bandit14
+
+<details>
+<summary>Intermediate Password Obtained</summary>
+
+`fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq`
+</details>
+
+You can't access other files anyways.
+
+Now submit the password to the post `30000` of `localhost` of the current level. You can you `netcat` command to connect to that port.
+
+    nc localhost 30000
+
+<details>
+<summary>Password Obtained</summary>
+
+`jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt`
+</details>
+
+### [Level 15 -> Level 16](https://overthewire.org/wargames/bandit/bandit16.html)
+
+Connect to the bandit's shell using this command:
+
+    ssh bandit15@bandit.labs.overthewire.org -p 2220
+
+The challenge is to connect to the port `30001` via ssl encryption. This can be achieved through the following command.
+
+    openssl s_client -connect localhost:30001
+
+Now submit the password of current level here to obtain the password for next level.
+
+<details>
+<summary>Password Obtained</summary>
+
+`JQttfApK4SeyHwDlI9SXGR50qclOAil1`
+</details>
+
+### [Level 16 -> Level 17](https://overthewire.org/wargames/bandit/bandit17.html)
+
+Connect to the bandit's shell using this command:
+
+    ssh bandit16@bandit.labs.overthewire.org -p 2220
+
+The challenge says there one of the ports ranging from `31000` to `32000` is accepting the password of the current level in exchange to the password for the next level. So we have to scan the open ports to know to where we have make a connection. To scan the ports, use the following command.
+
+    namp localhost -p T:31000-32000
+
+Here, `T:` indicates the type of connection, and `31000-32000` indicated the range of ports.
+
+Now make a connection to the ports using `openssl` command.
+
+    openssl s_client -connect localhost:31046
+or
+
+    openssl s_client -connect localhost:31518
+or
+
+    openssl s_client -connect localhost:31691
+or
+
+    openssl s_client -connect localhost:31790
+or
+
+    openssl s_client -connect localhost:31960
+
+Submit the password to whichever server that accepts it. In return you will recieve a ssh key. Save it into a file and name it `sshkey.private`
+
+| :exclamation:  There is no password obtained in this level   |
+|--------------------------------------------------------------|
+
+<details> <summary>SSH Key Obtained</summary>
+
+[sshkey.private](https://github.com/FoxGoesBrrr/Bandit/blob/main/sshkey.private)
+</details>
+
+### [Level 17 -> Level 18](https://overthewire.org/wargames/bandit/bandit18.html)
+
+Connect to the bandit's shell using the ssk key.
+
+    ssh -i sshkey.private bandit17@bandit.labs.overthewire.org -p 2220
+
+You will be able to see two files, namely `password.old` and `password.new`. One of the lines in the old file have been edited and saved as new file. We can find the changed line using the following command.
+
+    diff password.old password.new
+
+The new line appended is the password.
+
+<details> <summary>Password Obtained</summary>
+
+`hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg`
+</details>
