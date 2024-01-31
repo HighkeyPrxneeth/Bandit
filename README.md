@@ -75,7 +75,7 @@ Connect to the bandit's shell using this command.
 
     ssh bandit3@bandit.labs.overthewire.org -p 2220
 
-The file is located in a folder named `inhere` which contains a hidden file named `.hidden`. To read the contents of this file, first change the directory.
+The file is located in a directory named `inhere` which contains a hidden file named `.hidden`. To read the contents of this file, first change the directory.
 
     cd inhere
 
@@ -94,7 +94,7 @@ Connect to the bandit's shell using this command.
 
     ssh bandit4@bandit.labs.overthewire.org -p 2220
 
-The file is located in a folder named `inhere` which contains a lot of files going by the name `-file0X`. If we `cat` these files, we will get random characters but one of these files contains the password. To find the correct file and read the password, first go into the folder.
+The file is located in a directory named `inhere` which contains a lot of files going by the name `-file0X`. If we `cat` these files, we will get random characters but one of these files contains the password. To find the correct file and read the password, first go into the directory.
 
     cd inhere
 
@@ -202,5 +202,103 @@ The password for the next level is stored in the file data.txt and is preceded b
 <summary>Password Obtained</summary>
 
 `G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s`
+</details>
+
+### [Level 10 -> Level 11](https://overthewire.org/wargames/bandit/bandit11.html)
+
+Connect to the bandit's shell using this command:
+
+    ssh bandit10@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in a file called data.txt, which contains base64 encoded data. You can decode the content of the file using the base64 command and then analyze the output to find the password.
+
+    base64 -d data.txt | cat -
+
+This command decodes the content of data.txt and outputs it in the terminal in ASCII text.
+<details>
+<summary>Password Obtained</summary>
+
+`6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM`
+</details>
+
+### [Level 11 -> Level 12](https://overthewire.org/wargames/bandit/bandit12.html)
+
+Connect to the bandit's shell using this command:
+
+    ssh bandit11@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in a file called data.txt, which contains ROT13 encoded data. You can decode the content of the file using the tr command to perform the ROT13 decoding.
+
+    cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+This command translates the characters in data.txt using ROT13 encoding.
+<details>
+<summary>Password Obtained</summary>
+
+`JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv`
+</details>
+
+### [Level 12 -> Level 13](https://overthewire.org/wargames/bandit/bandit13.html)
+
+Connect to the bandit's shell using this command:
+
+    ssh bandit12@bandit.labs.overthewire.org -p 2220
+
+The operations that are to be performed are not suitable for home directory. Hence, create a temporary directory in `/tmp` and copy the data.txt file into that directory.
+
+    mkdir /tmp/foxy
+    cp data.txt /tmp/foxy/data
+    cd /tmp/foxy
+
+If we `cat` this file's header, we should be able to see the data for a file named `data2.bin`. Also check the hex data of the file. It starts with `1f` `8b`, which is the [magic number](https://en.wikipedia.org/wiki/List_of_file_signatures) of gzip compressed files.
+
+    cat data | head
+
+To operate on this file, we have to convert this hex data into an actual file, i.e., revert the data. We can do that using the following command.
+
+    xxd -r data c_data.gz
+
+Now we can decompress the file using this command.
+
+    gzip -d c_data.gz
+
+Now if we check the hex data of the decompressed file, we can see that it starts with `42` `5a` `68` which is also the magic number of bzip2 compressed files. We can rename and decompress this file using the following command.
+
+    mv c_data c_data.bz2
+    bzip2 -d c_data.bz2
+
+Again if we check the hex data of the decompressed file, we will find the magic number of gzip compressed files. Rename it and decompress it again.
+
+    mv c_data c_data.gz
+    gzip -d c_data.gz
+
+Checking the hex data of the file says almost nothing about it, but if we plainly `cat` the file, we will find strings with the value `ustar` which is the `ISO` encoding for `tar` compressed files. Rename and decompress this file.
+
+    mv c_data c_data.tar
+    tar -xf c_data.tar
+
+We can find a new file named `data5.bin` in the directory now. If we `cat` it, we will find `ustar` again. Decompress it.
+
+    tar -xf data5.bin
+
+A new file `data6.bin` appeared now. Looking at it's hex data, we can say that its a bzip2 compressed file. Decompress it.
+
+    bzip2 -d data6.bin
+
+You might get a warning saying that bzip2 couldn't guess the name for the output file. As it is a compressed file, it is normal to see this. Now if we `cat` this file, we will find that `data6.bin.out` is a tar compressed file. Decompress it.
+
+    tar -xf data6.bin.out
+
+Check the hex data of the newly formed file `data8.bin`. You can see that its a gzip compressed file. Rename it and decompress it (for the last time).
+
+    mv data8.bin data8.gz
+    gzip -d data8.gz
+
+Now `cat` the `data8` file for the password. The directory and the files that you have created will automatically get deleted (because you made them in `/tmp`, AKA temporary directory).
+
+<details>
+<summary>Password Obtained</summary>
+
+`wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw`
 </details>
 
