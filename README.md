@@ -359,7 +359,7 @@ Connect to the bandit's shell using this command:
 
 The challenge says there one of the ports ranging from `31000` to `32000` is accepting the password of the current level in exchange to the password for the next level. So we have to scan the open ports to know to where we have make a connection. To scan the ports, use the following command.
 
-    namp localhost -p T:31000-32000
+    nmap localhost -p T:31000-32000
 
 Here, `T:` indicates the type of connection, and `31000-32000` indicated the range of ports.
 
