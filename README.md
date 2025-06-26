@@ -18,7 +18,7 @@ A comprehensive solution-cum-guide to bandit challenges until level 20 and also 
 
 ### [Level 0 -> Level 1](https://overthewire.org/wargames/bandit/bandit1.html)
 
-To read the contents in the `readme ` file, use the following command.
+To read the contents in the `readme` file, use the following command.
     
     cat readme
 
